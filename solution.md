@@ -44,18 +44,18 @@ python manage.py startapp task
 ```
 ### 9. Crear el modelo de task
 ```python
-from django.conf import settings 
+
 from django.db import models 
-from django.utils import timezone
+
 
 class Task(models.Model): 
-    nombre = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
+    nombre = models.CharField(max_length=200) 
     descripcion = models.CharField(max_length=200) 
     realizacion = models.BooleanField(default=False)
     
     
-    def _str_(self):
-        return self.nombre
+    def __str__(self):
+        return str(self.nombre)
 ```
 ### 10. Preparar las tablas para añadirlas a la BBDD, y hacer el cambio definitivo.
 ```bash
@@ -121,3 +121,19 @@ Creamos una carpeta llamada templates, dentro de creamos un archivo con el nombr
 </body>
 </html>
 ```
+### 14 Administrador de Django
+Completamos el archivo admin.py y deberia de quear asi:
+```python
+from django.contrib import admin
+from .models import Task
+
+# Register your models here.
+
+admin.site.register(Task)
+```
+
+Creamos un super usuario
+```bash
+python manage.py createsuperuser
+``` 
+completamos los campos con nombreUsuario, correo, password
