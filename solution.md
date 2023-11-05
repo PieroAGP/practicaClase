@@ -94,4 +94,30 @@ def listaTareas(request):
 ```
 
 ### 13. Templates
- 
+Creamos una carpeta llamada templates, dentro de creamos un archivo con el nombre de listaTareas.html y deberia de quear con el siguiente contenido
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Tareas</title>
+</head>
+<body>
+    <h1>Tareas de Piero</h1>
+    <ol>
+        {% for tarea in tareas %}
+            <li> 
+                Nombre: {{tarea.nombre}} <br>
+                Descripcion: {{tarea.descripcion}} <br>
+                Realizacion: {{tarea.realizacion|yesno:"SI,NO"}} <br>
+            </li>
+            {% empty %}
+            <li>
+                No hay tareas por hacer
+            </li>
+        {%endfor%}    
+    </ol>
+</body>
+</html>
+```
