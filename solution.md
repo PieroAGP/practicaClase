@@ -71,7 +71,7 @@ from django.urls import path, include
 
 path('',include('task.urls')),
 ```
-Creamos el archivo urls.py en task
+Creamos el archivo urls.py en task y añadimos lo siguinete
 ```python
 from django.urls import path, include
 from . import views
@@ -81,4 +81,17 @@ urlpatterns = [
 ]
 ```
 
-### 12. 
+### 12. Modificar views.py
+en el archivo añadir lo siguiente:
+```python
+from django.shortcuts import render
+from .models import Task
+# Create your views here.
+
+def listaTareas(request):
+    tareas = Task.objects.all()
+    return render(request,'listaTareas.html',{'tareas': tareas})
+```
+
+### 13. Templates
+ 
