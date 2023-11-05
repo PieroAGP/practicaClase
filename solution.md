@@ -121,7 +121,7 @@ Creamos una carpeta llamada templates, dentro de creamos un archivo con el nombr
 </body>
 </html>
 ```
-### 14 Administrador de Django
+### 14. Administrador de Django
 Completamos el archivo admin.py y deberia de quear asi:
 ```python
 from django.contrib import admin
@@ -137,3 +137,9 @@ Creamos un super usuario
 python manage.py createsuperuser
 ``` 
 completamos los campos con nombreUsuario, correo, password
+
+### 15. Arrancamos el servidor
+Comprobamos que admin funciona y que podemos añadir tareas
+```bash
+python manage.py runserver
+```
