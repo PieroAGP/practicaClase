@@ -64,3 +64,21 @@ python manage.py makemigrations task
 ```bash
 python manage.py migrate task
 ```
+### 11. Preparar las URLS
+En mysite, añadimos al archivo urls.py lo siguiente:
+```python
+from django.urls import path, include
+
+path('',include('task.urls')),
+```
+Creamos el archivo urls.py en task
+```python
+from django.urls import path, include
+from . import views
+urlpatterns = [
+    path('', views.listaTareas, name='listaTareas'),
+
+]
+```
+
+### 12. 
