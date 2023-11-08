@@ -4,5 +4,5 @@ from .models import Task
 
 def listaTareas(request):
     tareas = Task.objects.all()
-    return render(request,'listaTareas.html',{'tareas': tareas})
+    return render(request,'task/listaTareas.html',{'tareas': tareas})
 
