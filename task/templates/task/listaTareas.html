@@ -6,6 +6,12 @@
     <title>Lista Tareas</title>
 </head>
 <body>
+    <h1>Nuevo tarea</h1>
+    <form action="{% url 'listaTareas' %}" method="post" >
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit"> Nueva tarea </button>
+    </form>    
     <h1>Tareas de Piero</h1>
     <ol>
         {% for tarea in tareas %}
