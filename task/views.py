@@ -12,16 +12,20 @@ class Tareas(View):
   tareas = Task.objects.all()
   template_name="task/listaTareas.html"
 
+  def actualizaTask(self):
+    self.tareas = Task.objects.all()
+    return self.tareas
+
   def get(self,request):
     form = TaskForm()
-    return render(request,self.template_name,{'tareas': self.tareas,'form':form})
+    return render(request,self.template_name,{'tareas': self.actualizaTask(),'form':form})
 
   def post(self,request):
     form= TaskForm(request.POST)
     if form.is_valid():
          form.save()
          return redirect('listaTareas')
-    return render(request,self.template_name,{'tareas': self.tareas,'form':form})
+    return render(request,self.template_name,{'tareas': self.actualizaTask(),'form':form})
   
 
 #def listaTareas(request):
