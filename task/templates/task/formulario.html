@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hola</h1>
+    <form action="{% url 'listaTareas' %}" method="post" >
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit"> Nueva tarea </button>
+    </form>
 </body>
 </html>

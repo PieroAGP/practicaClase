@@ -6,6 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h4>{{ task.descripcion }}</h4>
+    
+    <h4>Nombre: {{ task.nombre }} <br>
+        Descripcion: {{ task.descripcion }} <br>
+        Realizacion: {{ task.realizacion|yesno:"SI,NO" }}
+    </h4>
+    <form action="{% url 'listaTareas' %}" method="get">
+        <button type="submit"> Lista tareas </button>
+    </form>
+    <br>
+    <form action="{% url 'editarTarea' pk=task.pk %}" method="get">
+        <button type="submit"> Editar </button>
+    </form>
 </body>
 </html>

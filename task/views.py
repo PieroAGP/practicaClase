@@ -13,8 +13,53 @@ class task_detail(View):
    def get(self, request,pk):
       task = get_object_or_404(Task, pk=pk)
       return render(request, 'task/detalle_tarea.html', {'task': task})
-   
 
+class TaskList(View):
+  tareas = Task.objects.all()
+  template_name="task/listaTareas.html"
+
+  def get(self,request):
+     return render(request,self.template_name,{'tareas': self.actualizaTask})
+  
+  def actualizaTask(self):
+    self.tareas = Task.objects.all()
+    return self.tareas
+
+class NewTask(View):
+  tareas = Task.objects.all()
+  template_name="task/formulario.html"
+
+  def actualizaTask(self):
+    self.tareas = Task.objects.all()
+    return self.tareas
+  
+  def get(self,request):
+    form = TaskForm()
+    return render(request,self.template_name,{'tareas': self.actualizaTask(),'form':form})
+
+  def post(self,request):
+    form= TaskForm(request.POST)
+    if form.is_valid():
+         form.save()
+         return redirect('listaTareas')
+    return render(request,self.template_name,{'tareas': self.actualizaTask(),'form':form})
+
+class TaskEdit(View):
+  def get(self,request,pk):
+    task = get_object_or_404(Task,pk=pk)
+    form = TaskForm(instance=task)
+    return render(request, 'task/editarTarea.html', {'task':task, 'form':form}) 
+
+  def post(self,request,pk):
+    task= get_object_or_404(Task,pk=pk)
+    form = TaskForm(request.POST,instance=task)
+    if form.is_valid():
+      task = form.save(commit=False)
+      form.save()
+      return redirect('detalle_tarea', pk=pk)
+    return render(request,'editarTarea.html',{'task':task, 'form':form}) 
+
+""""
 class Tareas(View):
   tareas = Task.objects.all()
   template_name="task/listaTareas.html"
@@ -37,6 +82,7 @@ class Tareas(View):
          Task.objects.create(nombre=nombre, descripcion=descripcion, realizacion=realizacion)
          return redirect('listaTareas')
     return render(request,self.template_name,{'tareas': self.actualizaTask(),'form':form})
+"""
 
 """
 
