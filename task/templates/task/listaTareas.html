@@ -12,6 +12,10 @@
         {% empty %}
         <p>No hay tareas por hacer</p>
     {%endfor%}
+    <p>------------------------------------------------</p>
+    
+    <a href="{% url 'formulario' %}"><button> Nuevo Comentario </button></a>
+    
     <!--
     <h1>Nuevo tarea</h1>
     <form action="{% url 'listaTareas' %}" method="post" >

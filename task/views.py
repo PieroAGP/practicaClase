@@ -13,7 +13,7 @@ class task_detail(View):
    def get(self, request,pk):
       task = get_object_or_404(Task, pk=pk)
       return render(request, 'task/detalle_tarea.html', {'task': task})
-
+   
 
 class Tareas(View):
   tareas = Task.objects.all()
