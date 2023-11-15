@@ -1,11 +1,19 @@
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Task
 from .forms import TaskForm
 #importamis  la vista
 from django.views import View
 
+
 # Create your views here.
+
+#cambios
+class task_detail(View):
+   def get(self, request,pk):
+      task = get_object_or_404(Task, pk=pk)
+      return render(request, 'task/detalle_tarea.html', {'task': task})
+
 
 class Tareas(View):
   tareas = Task.objects.all()
